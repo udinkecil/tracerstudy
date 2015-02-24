@@ -1,0 +1,175 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">Form Pencarian Mahasiswa</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="booking-search">
+                    <form action="javascript:;" role="form" ng-submit="getListMahasiswa()">
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">Program Study:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                    <select class="form-control select2me" ng-model="formData.jurusan" ng-options="item.nama_jurusan for item in jurusanItems">
+                                        <option value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Status Mahasiswa</label>
+                                <div class="checkbox-list">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-model="formData.status.lulus" checked> Sudah Lulus </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-model="formData.status.aktif"> Masih Aktif </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">N.I.M:</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    <input class="form-control" size="16" type="text" ng-model="formData.nimhs" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Nama Mahasiswa:</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-user"></i>
+                                    <input class="form-control" size="16" type="text" ng-model="formData.nama"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label class="control-label">Dari IPK</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-file-text"></i>
+                                    <input class="form-control" size="16" type="number" min="0" max="4" step=".01" pattern="^[+-]?\d+(,\d{2})?" placeholder="" ng-model="formData.start_ipk"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Sampai IPK</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-file-text"></i>
+                                    <input class="form-control" size="16" type="number" min="0" max="4" step=".01" pattern="^[+-]?\d+(,\d{2})?" placeholder="" ng-model="formData.end_ipk"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Lulus Dari Tahun</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-calendar"></i>
+                                    <input class="form-control" size="16" type="number" placeholder="" ng-model="formData.start_year"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label">Sampai Tahun</label>
+                                <div class="input-icon">
+                                    <i class="fa fa-calendar"></i>
+                                    <input class="form-control" size="16" type="number" placeholder="" ng-model="formData.end_year"/>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn blue btn-block margin-top-20">CARI MAHASISWA <i class="m-icon-swapright m-icon-white"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" ng-show="mahasiswaItems">
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">Data Mahasiswa</span>
+                </div>
+            </div>
+            <div class="portlet-body" id="table-mahasiswa">
+                <div class="table-responsive table-scrollable table-scrollable-borderless">
+                    <div class="text-center margin-bottom-20">
+                        <pagination total-items="bigTotalItems" items-per-page="25" ng-change="pageChanged()" ng-model="bigCurrentPage" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                    </div>
+                    <table class="table table-hover table-light">
+                        <thead>
+                        <tr class="uppercase">
+                            <th colspan="2">
+                                <a href="javascript:;" class="primary-link" ng-click="sortData('nimhs')">
+                                    N.I.M <span ng-show="orderByField=='nimhs'"><i ng-show="reverseSort" class="fa fa-fw fa-sort-desc"></i>
+                                    <i ng-show="!reverseSort" class="fa fa-fw fa-sort-asc"></i></span></a>
+                            </th>
+                            <th>
+                                NAMA
+                            </th>
+                            <th>
+                                KELAMIN
+                            </th>
+                            <th>
+                                EMAIL
+                            </th>
+                            <th>
+                                <a href="javascript:;" class="primary-link" ng-click="sortData('kdjur')">
+                                    PROGRAM STUDI <span ng-show="orderByField=='kdjur'"><i ng-show="reverseSort" class="fa fa-fw fa-sort-desc"></i>
+                                    <i ng-show="!reverseSort" class="fa fa-fw fa-sort-asc"></i></span></a>
+                            </th>
+                            <th>
+                                STATUS
+                            </th>
+                            <th>
+                                <a href="javascript:;" class="primary-link" ng-click="sortData('nlipk')">
+                                    IPK <span ng-show="orderByField=='nlipk'"><i ng-show="reverseSort" class="fa fa-fw fa-sort-desc"></i>
+                                    <i ng-show="!reverseSort" class="fa fa-fw fa-sort-asc"></i></span></a>
+                            </th>
+                            <th>
+                                PREDIKAT
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="mahasiswa in mahasiswaItems">
+                            <td class="fit">
+                                <img class="user-pic" src="{{ mahasiswa.photo_url.thumbnail }}">
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="primary-link" ng-click="open(mahasiswa)">{{ mahasiswa.nim }}</a>
+                            </td>
+                            <td>
+                                {{ mahasiswa.nama_mahasiswa }}
+                            </td>
+                            <td>
+                                {{ mahasiswa.kelamin }}
+                            </td>
+                            <td>
+                                {{ mahasiswa.email }}
+                            </td>
+                            <td>
+                                <span class="bold theme-font">{{ mahasiswa.program_studi}}</span>
+                            </td>
+                            <td>
+                                {{ mahasiswa.status_kuliah }}
+                            </td>
+                            <td>
+                                <span class="bold theme-font">{{ mahasiswa.ipk }}</span>
+                            </td>
+                            <td>
+                                {{ mahasiswa.predikat }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center margin-top-20">
+                        <pagination total-items="bigTotalItems" ng-change="pageChanged()" items-per-page="25" ng-model="bigCurrentPage" max-size="maxSize" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
+</div>

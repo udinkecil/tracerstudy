@@ -20,18 +20,24 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('test', [
-    'as' => 'test',
-    'uses' => 'TracerController@index'
+Route::get('jurusan', [
+    'as'    => 'jurusan.index',
+    'uses'  => 'JurusanController@index'
+]);
+
+Route::post('search', [
+    'as' => 'tracer.search',
+    'uses' => 'TracerController@search'
 ]);
 
 Route::get('t', function()
 {
+    return view('default');
 //    $resource = \App\Mahasiswa::with('kelamin', 'predikat', 'jurusan')
 //        ->where('stakl', 'L')
 //        ->paginate(10);
 //
 //    return $resource;
 
-    return response()->json(['tes' => 'dafdsa']);
+    //return response()->json(['tes' => 'dafdsa']);
 });
