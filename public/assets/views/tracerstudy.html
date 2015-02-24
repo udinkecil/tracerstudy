@@ -134,7 +134,7 @@
                         <tbody>
                         <tr ng-repeat="mahasiswa in mahasiswaItems">
                             <td class="fit">
-                                <img class="user-pic" src="{{ mahasiswa.photo_url.thumbnail }}">
+                                <img class="user-pic" ng-src="{{ mahasiswa.photo_url.thumbnail }}">
                             </td>
                             <td>
                                 <a href="javascript:;" class="primary-link" ng-click="open(mahasiswa)">{{ mahasiswa.nim }}</a>
