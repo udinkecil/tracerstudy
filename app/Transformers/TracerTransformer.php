@@ -11,10 +11,12 @@ class TracerTransformer extends TransformerAbstract {
             'nim'            => $mahasiswa->nimhs,
             'nama_mahasiswa' => trim($mahasiswa->nmmhs),
             'kelamin'        => $mahasiswa->kelamin->nmkod,
+            'tahun_lulus'    => ($mahasiswa->tglre) ? $mahasiswa->tglre->year : null,
             'program_studi'  => $mahasiswa->jurusan->nmjur,
             'predikat'       => ($mahasiswa->predikat) ? $mahasiswa->predikat->nmkod : null,
             'status_kuliah'  => ($mahasiswa->status) ? $mahasiswa->status->nmkod : null,
             'email'          => $mahasiswa->email,
+            'total_sks'      => $mahasiswa->skstt,
             'ipk'            => $mahasiswa->nlipk,
             'photo_url'      => [ 'thumbnail' => ($mahasiswa->photo)
                 ? "http://mahasiswa.moestopo.ac.id/foto/thumbnail/{$mahasiswa->photo}"

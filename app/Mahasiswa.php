@@ -27,6 +27,11 @@ class Mahasiswa extends Model {
     {
         return $this->belongsTo('App\Code', 'stakl', 'kdkod')->where('kdgrp', '05');
     }
+
+    public function getDates()
+    {
+        return ['tglre', 'tglhr'];
+    }
     
     public function scopeIpkBetween($query, $start = null, $end = null)
     {

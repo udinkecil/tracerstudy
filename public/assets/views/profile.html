@@ -34,27 +34,27 @@
                 <!-- STAT -->
                 <div class="row list-separated profile-stat">
                     <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            37
-                        </div>
                         <div class="uppercase profile-stat-text">
-                            Projects
+                            IPK
+                        </div>
+                        <div class="uppercase profile-stat-title">
+                            {{ mahasiswa.ipk }}
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            51
-                        </div>
                         <div class="uppercase profile-stat-text">
-                            Tasks
+                            Total SKS
+                        </div>
+                        <div class="uppercase profile-stat-title">
+                            {{ mahasiswa.total_sks }}
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-6">
-                        <div class="uppercase profile-stat-title">
-                            61
-                        </div>
                         <div class="uppercase profile-stat-text">
-                            Uploads
+                            Lulus
+                        </div>
+                        <div class="uppercase profile-stat-title">
+                            {{ mahasiswa.tahun_lulus }}
                         </div>
                     </div>
                 </div>
@@ -65,6 +65,43 @@
         <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->
         <div class="profile-content fade-in-up">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN PORTLET -->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart theme-font hide"></i>
+                                <span class="caption-subject font-blue-madison bold uppercase">Soft Skills</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="note note-warning">
+                                <h4 class="block">Peringatan! </h4>
+                                <p>
+                                    Mahasiswa belum mendatakan soft skills yang dimiliki.
+                                </p>
+                            </div>
+                            <!-- <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                    <tr class="uppercase">
+                                        <th colspan="2">
+                                            Tahun
+                                        </th>
+                                        <th colspan="7">
+                                            Skill
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                </table>
+                            </div>-->
+                        </div>
+                    </div>
+                    <!-- END PORTLET -->
+                </div>
+            </div>
         </div>
         <!-- END PROFILE CONTENT -->
     </div>

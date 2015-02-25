@@ -74,10 +74,21 @@ MetronicApp
 
             list.then(
                 function(payload) {
-                    $scope.mahasiswaItems = payload.data.data;
 
-                    $scope.bigTotalItems  = payload.data.meta.pagination.total;
-                    $scope.bigCurrentPage = payload.data.meta.pagination.current_page;
+                    var result = payload.data;
+
+                    if (result.meta.pagination.total == 0) {
+                        $scope.alerts = [
+                            { type: 'danger', msg: 'Data mahasiswa tidak ditemukan.' },
+                        ];
+                        return false;
+                    }
+
+                    $scope.alerts = [];
+                    $scope.mahasiswaItems = result.data;
+
+                    $scope.bigTotalItems  = result.meta.pagination.total;
+                    $scope.bigCurrentPage = result.meta.pagination.current_page;
 
                     Metronic.scrollTo($('body'), 600);
                 }
@@ -102,8 +113,6 @@ MetronicApp
                 }
             });
         };
-
-
 
         $scope.$on('$viewContentLoaded', function() {
             Metronic.initAjax();
