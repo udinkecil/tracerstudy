@@ -15,7 +15,7 @@ class TracerTransformer extends TransformerAbstract {
             'program_studi'  => $mahasiswa->jurusan->nmjur,
             'predikat'       => ($mahasiswa->predikat) ? $mahasiswa->predikat->nmkod : null,
             'status_kuliah'  => ($mahasiswa->status) ? $mahasiswa->status->nmkod : null,
-            'email'          => $mahasiswa->email,
+            'email'          => ($mahasiswa->usrnm) ? "{$mahasiswa->usrnm}@std.moestopo.ac.id" : null,
             'total_sks'      => $mahasiswa->skstt,
             'ipk'            => $mahasiswa->nlipk,
             'photo_url'      => [ 'thumbnail' => ($mahasiswa->photo)
