@@ -124,7 +124,7 @@ MetronicApp
                 return $http.post( '/search', formObj );
             },
             getPageMahasiswa: function(formObj, page) {
-                return $http.post( '/search/?page='+page, formObj );
+                return $http.post( '/search?page='+page, formObj );
             }
         }
 })
